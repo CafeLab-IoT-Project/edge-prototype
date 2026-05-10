@@ -171,11 +171,17 @@ def register_reading():
     status = "OPTIMAL"
     actuator_command = "NONE"
 
-    if temperature > thresholds.max_temperature or humidity > thresholds.max_humidity:
+    if humidity > thresholds.max_humidity:
         status = "DANGER"
         actuator_command = "ACTIVATE"
+    elif temperature > thresholds.max_temperature:
+        status = "DANGER"
+        actuator_command = "NONE"
     elif temperature < thresholds.min_temperature or humidity < thresholds.min_humidity:
         status = "WARNING"
+        actuator_command = "NONE"
+    else:
+        status = "OPTIMAL"
         actuator_command = "NONE"
 
     reading = SensorReading.create(
