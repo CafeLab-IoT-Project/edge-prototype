@@ -1,0 +1,5 @@
+Flask
+flask-cors
+peewee
+gunicorn
+psycopg2-binary
